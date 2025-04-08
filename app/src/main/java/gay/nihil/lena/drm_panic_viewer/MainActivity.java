@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.provider.MediaStore;
@@ -17,6 +19,7 @@ import zxingcpp.BarcodeReader;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -66,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), R.string.no_camera_app, Toast.LENGTH_LONG).show();
             }
         });
+
+        navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
+            if (navDestination.getId() == R.id.FirstFragment) {
+                binding.fab.show();
+            } else {
+                binding.fab.hide();
+            }
+        });
     }
 
     @Override
@@ -74,12 +85,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
 
-            Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
+            assert uri != null;
 
-            //Fragment first = getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
-            //assert first != null;
-            //NavHostFragment.findNavController(first)
-            //        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            Fragment first = getSupportFragmentManager().getFragments().get(0);
+            assert first != null;
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("uri", uri);
+            NavHostFragment.findNavController(first)
+                    .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
         }
     }
 

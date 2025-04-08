@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "gay.nihil.lena.drm_panic_viewer"
-        minSdk = 29
-        targetSdk = 35
+        minSdk = 33
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         // andromeda shit

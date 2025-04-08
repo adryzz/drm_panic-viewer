@@ -100,7 +100,7 @@ class CameraViewActivity : AppCompatActivity() {
                 .build()
 
             // Use the camera object to link our preview use case with the view
-            preview.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+            preview.surfaceProvider = binding.viewFinder.surfaceProvider
 
             imageAnalysis.setAnalyzer(executor, ImageAnalysis.Analyzer { image ->
 

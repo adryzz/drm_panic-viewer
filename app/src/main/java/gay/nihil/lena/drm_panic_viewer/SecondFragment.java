@@ -31,12 +31,18 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
-        return binding.getRoot();
 
+        return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = this.getArguments();
+        assert bundle != null;
+        Uri uri = bundle.getParcelable("uri", Uri.class);
+
+        binding.textviewSecond.setText(uri.toString());
         // weird hack to remove cut/paste options
         if (binding.textviewSecond.getCustomSelectionActionModeCallback() == null) {
             binding.textviewSecond.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
