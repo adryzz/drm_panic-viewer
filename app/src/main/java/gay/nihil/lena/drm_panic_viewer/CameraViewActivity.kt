@@ -133,7 +133,7 @@ class CameraViewActivity : AppCompatActivity() {
                        val uri = resultText.toUri()
                        val data = Intent()
                        data.setData(uri)
-                       setResult(RESULT_OK, data);
+                       setResult(RESULT_OK, data)
                        finish()
                    }
             })

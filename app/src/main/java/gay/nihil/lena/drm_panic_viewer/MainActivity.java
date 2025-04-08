@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST);
             } catch (ActivityNotFoundException e) {
                 // display error state to the user
-                Toast.makeText(getBaseContext(), R.string.no_camera_app, Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), R.string.no_report_uri, Toast.LENGTH_SHORT).show();
             }
         });
 

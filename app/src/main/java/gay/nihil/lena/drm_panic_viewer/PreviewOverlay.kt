@@ -12,7 +12,7 @@ import androidx.camera.core.ImageProxy
 import kotlin.math.max
 import kotlin.math.min
 
-class PreviewOverlay constructor(context: Context, attributeSet: AttributeSet?) :
+class PreviewOverlay(context: Context, attributeSet: AttributeSet?) :
     View(context, attributeSet) {
 
     private val paintPath = Paint(Paint.ANTI_ALIAS_FLAG).apply {

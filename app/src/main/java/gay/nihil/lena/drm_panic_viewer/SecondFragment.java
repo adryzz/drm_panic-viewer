@@ -1,5 +1,7 @@
 package gay.nihil.lena.drm_panic_viewer;
 
+import static gay.nihil.lena.drm_panic_viewer.databinding.FragmentSecondBinding.*;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,16 +15,23 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import java.util.Objects;
 
 import gay.nihil.lena.drm_panic_viewer.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
+
+    PanicMessage panicMessage;
 
     @Override
     public View onCreateView(
@@ -42,8 +51,13 @@ public class SecondFragment extends Fragment {
         assert bundle != null;
         Uri uri = bundle.getParcelable("uri", Uri.class);
 
+        assert uri != null;
+
+        panicMessage = new PanicMessage(uri);
+
         binding.textviewSecond.setText(uri.toString());
-        // weird hack to remove cut/paste options
+        setActivityTitle(panicMessage.reason);
+        // weird hack to remove cut/paste and other bad options
         if (binding.textviewSecond.getCustomSelectionActionModeCallback() == null) {
             binding.textviewSecond.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
                 @Override
@@ -55,6 +69,19 @@ public class SecondFragment extends Fragment {
                 public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
                     menu.removeItem(android.R.id.paste);
                     menu.removeItem(android.R.id.cut);
+                    menu.removeItem(android.R.id.pasteAsPlainText);
+                    menu.removeItem(android.R.id.autofill);
+                    menu.removeItem(android.R.id.edit);
+                    menu.removeItem(android.R.id.empty);
+                    menu.removeItem(android.R.id.replaceText);
+                    menu.removeItem(android.R.id.extractArea);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                        menu.removeItem(android.R.id.underline);
+                        menu.removeItem(android.R.id.bold);
+                        menu.removeItem(android.R.id.italic);
+                    }
+
                     return true;
                 }
 
@@ -67,11 +94,21 @@ public class SecondFragment extends Fragment {
                 public void onDestroyActionMode(ActionMode mode) {
                 }
             });
-        }else{
+        } else {
             binding.textviewSecond.setCustomSelectionActionModeCallback(null);
         }
 
-        //binding.buttonSecond.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))));
+        binding.buttonSecond.setOnClickListener(v -> {
+            if (panicMessage.reportUri != null) {
+                startActivity(new Intent(Intent.ACTION_VIEW, panicMessage.reportUri));
+            } else {
+                Toast.makeText(getContext(), R.string.no_report_uri, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    void setActivityTitle(String title) {
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(title);
     }
 
     @Override

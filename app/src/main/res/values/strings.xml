@@ -7,9 +7,7 @@
     <string name="next">Next</string>
     <string name="report_button">Report Panic</string>
 
-    <string name="no_camera_app">You don\'t have a camera app installed.</string>
-    <string name="bundle_no_bitmap">The camera result contains no image.</string>
-    <string name="no_qr_code">No QR code found in the image.</string>
+    <string name="no_report_uri">This panic log doesn\'t include a report URL</string>
 
     <string name="introduction_text">
         Click the button on the bottom right to scan a kernel panic QR code.\n\nHere there should probably be a log of old panics in a recyclerview.

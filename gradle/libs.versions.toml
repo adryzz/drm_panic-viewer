@@ -1,22 +1,19 @@
 [versions]
 agp = "8.9.1"
 androidx-camera = "1.4.2"
-uiGraphics = "1.8.0-rc02"
 zxing-cpp = "2.4.0-SNAPSHOT"
-andromedaVersion = "13.2.2"
-desugar_jdk_libs = "2.1.5"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-constraintlayout = "2.2.0"
-navigationFragment = "2.6.0"
-navigationUi = "2.6.0"
+constraintlayout = "2.2.1"
+navigationFragment = "2.8.9"
+navigationUi = "2.8.9"
 kotlin = "2.1.20"
 coreKtx = "1.15.0"
-activity = "1.8.0"
-preference = "1.2.0"
+activity = "1.10.1"
+preference = "1.2.1"
 
 [libraries]
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidx-camera" }
