@@ -55,7 +55,7 @@ public class SecondFragment extends Fragment {
 
         panicMessage = new PanicMessage(uri);
 
-        binding.textviewSecond.setText(uri.toString());
+        binding.textviewSecond.setText(panicMessage.getLog());
         setActivityTitle(panicMessage.reason);
         // weird hack to remove cut/paste and other bad options
         if (binding.textviewSecond.getCustomSelectionActionModeCallback() == null) {
