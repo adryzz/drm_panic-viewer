@@ -1,0 +1,10 @@
+<resources>
+    <string-array name="save_old_panics">
+        <item>Don\'t save</item>
+        <item>1 day</item>
+        <item>1 week</item>
+        <item>2 weeks</item>
+        <item>1 month</item>
+        <item>Forever</item>
+    </string-array>
+</resources>

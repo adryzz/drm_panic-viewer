@@ -46,6 +46,7 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.activity)
+    implementation(libs.androidx.preference)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.appcompat)
     implementation(libs.material)

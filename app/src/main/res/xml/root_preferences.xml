@@ -1,0 +1,32 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/miscellaneous_header">
+
+        <SwitchPreferenceCompat
+            app:key="double_report"
+            app:title="@string/double_report"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/save_old_panics"
+            app:entryValues="@array/save_old_panics"
+            app:key="reply"
+            app:title="@string/save_panics"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/about_header">
+
+        <Preference
+            app:key="about"
+            app:title="@string/about_comment" />
+
+        <Preference
+            app:key="attachment"
+            app:title="@string/trans_rights" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

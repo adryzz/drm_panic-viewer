@@ -16,6 +16,7 @@ navigationUi = "2.6.0"
 kotlin = "2.1.20"
 coreKtx = "1.15.0"
 activity = "1.8.0"
+preference = "1.2.0"
 
 [libraries]
 compose-graphics =  { module = "androidx.compose.ui:ui-graphics", version.ref = "uiGraphics" }
@@ -36,6 +37,7 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

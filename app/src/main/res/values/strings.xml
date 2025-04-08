@@ -15,4 +15,17 @@
         Click the button on the bottom right to scan a kernel panic QR code.\n\nHere there should probably be a log of old panics in a recyclerview.
     </string>
     <string name="placeholder_crash_dump" translatable="false">dummy text</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="miscellaneous_header">Miscellaneous</string>
+    <string name="about_header">About</string>
+
+    <!-- Messages Preferences -->
+    <string name="double_report">Warn before reporting a panic more than once</string>
+    <string name="save_panics">Save old kernel panics for</string>
+
+    <!-- About Preferences -->
+    <string name="trans_rights">trans rights</string>
+    <string name="about_comment">Made with &lt;3 by lena</string>
 </resources>
