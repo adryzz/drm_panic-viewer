@@ -1,8 +1,6 @@
 package gay.nihil.lena.drm_panic_viewer
 
 import android.net.Uri
-import java.io.BufferedReader
-import java.io.ByteArrayInputStream
 import java.util.zip.InflaterInputStream
 import kotlin.streams.asStream
 import androidx.core.net.toUri
@@ -48,7 +46,7 @@ class PanicMessage(uri: Uri) {
 
             if (distribution == null) {
                 // TODO: make a list of names
-                this.distribution = reportUri!!.getHost()
+                this.distribution = reportUri!!.host
             }
 
             // decode encoded log
@@ -75,6 +73,7 @@ class PanicMessage(uri: Uri) {
     }
 
     // ported directly from https://github.com/kdj0c/panic_report
+    // under MIT license (c) 2024 Jocelyn Falempe
     fun numbersToData2(numbers: String): ByteArray {
         // 17 decimal digits are converted to 7 bytes
         val mainLen = (numbers.length / 17) * 7
@@ -102,6 +101,7 @@ class PanicMessage(uri: Uri) {
     }
 
     // ported directly from https://github.com/kdj0c/panic_report
+    // under MIT license (c) 2024 Jocelyn Falempe
     fun numbersToData(numbers: String): ByteArray {
         val numCharsToBits = intArrayOf(0, 4, 7, 10, 13)
         val lengthInBits = (numbers.length / 4) * 13 + numCharsToBits[numbers.length % 4]

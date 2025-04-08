@@ -2,26 +2,13 @@ package gay.nihil.lena.drm_panic_viewer
 
 import android.Manifest
 import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import java.util.concurrent.Executors
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.ImageFormat
 import android.graphics.PointF
-import android.graphics.Rect
-import android.graphics.YuvImage
 import android.hardware.camera2.CaptureRequest
-import android.media.AudioManager
-import android.media.MediaActionSound
-import android.media.ToneGenerator
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.view.View
-import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.camera2.interop.Camera2CameraControl
@@ -35,16 +22,15 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.toPointF
 import androidx.lifecycle.LifecycleOwner
 import gay.nihil.lena.drm_panic_viewer.databinding.ActivityCameraViewBinding
-import java.io.ByteArrayOutputStream
-import java.io.File
 import zxingcpp.BarcodeReader
 import zxingcpp.BarcodeReader.Format.*
-import kotlin.jvm.java
 import androidx.core.net.toUri
 
+// ported directly from https://github.com/zxing-cpp/zxing-cpp
+// under Apache License (c) 2025 zxing-cpp contributors
+// removed the java version and buttons
 class CameraViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraViewBinding
     private val executor = Executors.newSingleThreadExecutor()

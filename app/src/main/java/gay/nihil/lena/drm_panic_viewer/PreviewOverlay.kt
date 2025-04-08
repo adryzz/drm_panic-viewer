@@ -12,6 +12,9 @@ import androidx.camera.core.ImageProxy
 import kotlin.math.max
 import kotlin.math.min
 
+// ported directly from https://github.com/zxing-cpp/zxing-cpp
+// under Apache License (c) 2025 zxing-cpp contributors
+// copied directly
 class PreviewOverlay(context: Context, attributeSet: AttributeSet?) :
     View(context, attributeSet) {
 
