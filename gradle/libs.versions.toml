@@ -19,14 +19,11 @@ activity = "1.8.0"
 preference = "1.2.0"
 
 [libraries]
-compose-graphics =  { module = "androidx.compose.ui:ui-graphics", version.ref = "uiGraphics" }
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidx-camera" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "androidx-camera" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "androidx-camera" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "androidx-camera" }
 zxing-cpp = { module = "io.github.zxing-cpp:android", version.ref = "zxing-cpp" }
-andromeda-qr = { module = "com.kylecorry.andromeda:qr", version.ref = "andromedaVersion" }
-desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
