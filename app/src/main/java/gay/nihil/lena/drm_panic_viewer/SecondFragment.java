@@ -55,13 +55,40 @@ public class SecondFragment extends Fragment {
 
         panicMessage = new PanicMessage(uri);
 
-        binding.textviewSecond.setText(panicMessage.getLog());
+        binding.logView.setText(panicMessage.getLog());
         if (panicMessage.reason != null) {
             setActivityTitle(panicMessage.reason);
         }
+
+        binding.logTypeLabel.setText(getString(R.string.log_type_label, getResources().getStringArray(R.array.log_types)[panicMessage.getLogType()]));
+
+        if (panicMessage.getHardwareName() != null) {
+            binding.hardwareNameLabel.setText(getString(R.string.hardware_name_label, panicMessage.getHardwareName()));
+        } else {
+            binding.hardwareNameLabel.setVisibility(View.GONE);
+        }
+
+        if (panicMessage.getDistribution() != null) {
+            binding.distributionLabel.setText(getString(R.string.distribution_label, panicMessage.getDistribution()));
+        } else {
+            binding.distributionLabel.setVisibility(View.GONE);
+        }
+
+        if (panicMessage.getVersion() != null) {
+            binding.versionLabel.setText(getString(R.string.version_label, panicMessage.getVersion()));
+        } else {
+            binding.versionLabel.setVisibility(View.GONE);
+        }
+
+        if (panicMessage.getArchitecture() != null) {
+            binding.architectureLabel.setText(getString(R.string.architecture_label, panicMessage.getArchitecture()));
+        } else {
+            binding.architectureLabel.setVisibility(View.GONE);
+        }
+
         // weird hack to remove cut/paste and other bad options
-        if (binding.textviewSecond.getCustomSelectionActionModeCallback() == null) {
-            binding.textviewSecond.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+        if (binding.logView.getCustomSelectionActionModeCallback() == null) {
+            binding.logView.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     return true;
@@ -97,7 +124,7 @@ public class SecondFragment extends Fragment {
                 }
             });
         } else {
-            binding.textviewSecond.setCustomSelectionActionModeCallback(null);
+            binding.logView.setCustomSelectionActionModeCallback(null);
         }
 
         binding.buttonSecond.setOnClickListener(v -> {

@@ -15,6 +15,13 @@ class PanicMessage(uri: Uri) {
     var distribution: String? = null
     @JvmField
     var reportUri: Uri? = null
+    var logType = PanicMessageType.RAW
+
+    object PanicMessageType {
+        const val RAW: Int = 0
+        const val LEGACY: Int = 1
+        const val FULL: Int = 2
+    }
 
     init {
         if (uri.host == null) {
@@ -31,7 +38,6 @@ class PanicMessage(uri: Uri) {
                 }
             }
         } else {
-            // TODO: fix
 
             this.reportUri = uri
             var stuff = uri
@@ -52,9 +58,11 @@ class PanicMessage(uri: Uri) {
             // decode encoded log
 
             val zlibbed = if (stuff.getQueryParameter("z") != null) {
+                logType = PanicMessageType.FULL
                 numbersToData2(stuff.getQueryParameter("z")!!)
             } else {
                 // legacy encoding, v6.10 to v6.13
+                logType = PanicMessageType.LEGACY
                 numbersToData(stuff.getQueryParameter("zl")!!)
             }
 

@@ -13,7 +13,16 @@
         Click the button on the bottom right to scan a kernel panic QR code.\n\nHere there should probably be a log of old panics in a recyclerview.
     </string>
     <string name="placeholder_crash_dump" translatable="false">dummy text</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="unknown_distribution_label">Unknown (%1$s)</string>
+
+    <string name="hardware_name_label">Hardware name: %1$s</string>
+    <string name="distribution_label">Distribution: %1$s</string>
+    <string name="version_label">Version: %1$s</string>
+    <string name="architecture_label">Architecture: %1$s</string>
+    <string name="log_type_label">Log type: %1$s</string>
+
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
     <string name="miscellaneous_header">Miscellaneous</string>

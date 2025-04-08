@@ -7,4 +7,10 @@
         <item>1 month</item>
         <item>Forever</item>
     </string-array>
+
+    <string-array name="log_types">
+        <item>RAW</item>
+        <item>LEGACY</item>
+        <item>FULL</item>
+    </string-array>
 </resources>
