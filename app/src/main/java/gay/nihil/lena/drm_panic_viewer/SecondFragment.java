@@ -53,7 +53,13 @@ public class SecondFragment extends Fragment {
 
         assert uri != null;
 
-        panicMessage = new PanicMessage(uri);
+        try {
+            panicMessage = new PanicMessage(uri);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), R.string.not_a_crash_qr, Toast.LENGTH_LONG).show();
+            NavHostFragment.findNavController(this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+            return;
+        }
 
         binding.logView.setText(panicMessage.getLog());
         if (panicMessage.reason != null) {
