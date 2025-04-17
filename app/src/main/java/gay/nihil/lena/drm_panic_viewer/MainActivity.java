@@ -3,6 +3,7 @@ package gay.nihil.lena.drm_panic_viewer;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -24,6 +25,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.preference.PreferenceManager;
+import androidx.room.Room;
 
 import gay.nihil.lena.drm_panic_viewer.databinding.ActivityMainBinding;
 
@@ -40,12 +43,17 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    public AppDatabase database;
+
 
     private static final int CAMERA_REQUEST = 1312;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        database = Room.databaseBuilder(getBaseContext(),
+                AppDatabase.class, "panic-database").allowMainThreadQueries().build();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -87,12 +95,22 @@ public class MainActivity extends AppCompatActivity {
 
             assert uri != null;
 
-            Fragment first = getSupportFragmentManager().getFragments().get(0);
-            assert first != null;
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("uri", uri);
-            NavHostFragment.findNavController(first)
-                    .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
+            try {
+                PanicMessage panic = PanicMessage.parse(uri);
+                if (!PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("save_old_panics", "0").equals("0")) {
+                    database.panicDao().insert(panic);
+                }
+
+                Fragment first = getSupportFragmentManager().getFragments().get(0);
+                assert first != null;
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("panic", panic);
+                NavHostFragment.findNavController(first)
+                        .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
+            } catch (NullPointerException e) {
+                Toast.makeText(getBaseContext(), R.string.not_a_crash_qr, Toast.LENGTH_LONG).show();
+                return;
+            }
         }
     }
 

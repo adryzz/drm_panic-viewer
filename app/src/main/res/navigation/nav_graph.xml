@@ -20,9 +20,10 @@
         android:name="gay.nihil.lena.drm_panic_viewer.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
+
         <argument
-            android:name="uri"
-            app:argType="android.net.Uri" />
+            android:name="panic"
+            app:argType="gay.nihil.lena.drm_panic_viewer.PanicMessage" />
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

@@ -8,10 +8,10 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="reply"
+            app:defaultValue="1209600"
             app:entries="@array/save_old_panics"
-            app:entryValues="@array/save_old_panics"
-            app:key="reply"
+            app:entryValues="@array/save_old_panics_values"
+            app:key="save_old_panics"
             app:title="@string/save_panics"
             app:useSimpleSummaryProvider="true" />
 

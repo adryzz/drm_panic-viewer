@@ -11,8 +11,10 @@
 
     <string name="not_a_crash_qr">This isn\'t a panic crash QR code.</string>
 
+    <string name="panic_open_error">Error while opening panic message.</string>
+
     <string name="introduction_text">
-        Click the button on the bottom right to scan a kernel panic QR code.\n\nHere there should probably be a log of old panics in a recyclerview.
+        Click the button on the bottom right to scan a kernel panic QR code.
     </string>
     <string name="placeholder_crash_dump" translatable="false">dummy text</string>
 

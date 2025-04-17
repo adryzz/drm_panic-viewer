@@ -49,45 +49,42 @@ public class SecondFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         assert bundle != null;
-        Uri uri = bundle.getParcelable("uri", Uri.class);
 
-        assert uri != null;
+        panicMessage = bundle.getParcelable("panic", PanicMessage.class);
 
-        try {
-            panicMessage = new PanicMessage(uri);
-        } catch (Exception e) {
-            Toast.makeText(getContext(), R.string.not_a_crash_qr, Toast.LENGTH_LONG).show();
+        if (panicMessage == null) {
+            Toast.makeText(getContext(), R.string.panic_open_error, Toast.LENGTH_LONG).show();
             NavHostFragment.findNavController(this).navigate(R.id.action_SecondFragment_to_FirstFragment);
             return;
         }
 
-        binding.logView.setText(panicMessage.getLog());
+        binding.logView.setText(panicMessage.log);
         if (panicMessage.reason != null) {
             setActivityTitle(panicMessage.reason);
         }
 
-        binding.logTypeLabel.setText(getString(R.string.log_type_label, getResources().getStringArray(R.array.log_types)[panicMessage.getLogType()]));
+        binding.logTypeLabel.setText(getString(R.string.log_type_label, getResources().getStringArray(R.array.log_types)[panicMessage.logType]));
 
-        if (panicMessage.getHardwareName() != null) {
-            binding.hardwareNameLabel.setText(getString(R.string.hardware_name_label, panicMessage.getHardwareName()));
+        if (panicMessage.hardwareName != null) {
+            binding.hardwareNameLabel.setText(getString(R.string.hardware_name_label, panicMessage.hardwareName));
         } else {
             binding.hardwareNameLabel.setVisibility(View.GONE);
         }
 
-        if (panicMessage.getDistribution() != null) {
-            binding.distributionLabel.setText(getString(R.string.distribution_label, panicMessage.getDistribution()));
+        if (panicMessage.distribution != null) {
+            binding.distributionLabel.setText(getString(R.string.distribution_label, panicMessage.distribution));
         } else {
             binding.distributionLabel.setVisibility(View.GONE);
         }
 
-        if (panicMessage.getVersion() != null) {
-            binding.versionLabel.setText(getString(R.string.version_label, panicMessage.getVersion()));
+        if (panicMessage.version != null) {
+            binding.versionLabel.setText(getString(R.string.version_label, panicMessage.version));
         } else {
             binding.versionLabel.setVisibility(View.GONE);
         }
 
-        if (panicMessage.getArchitecture() != null) {
-            binding.architectureLabel.setText(getString(R.string.architecture_label, panicMessage.getArchitecture()));
+        if (panicMessage.architecture != null) {
+            binding.architectureLabel.setText(getString(R.string.architecture_label, panicMessage.architecture));
         } else {
             binding.architectureLabel.setVisibility(View.GONE);
         }
